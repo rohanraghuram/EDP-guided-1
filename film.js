@@ -8,7 +8,7 @@ const baseUrl = `http://localhost:9001/api`;
 
 // Runs on page load
 addEventListener('DOMContentLoaded', () => {
-  nameH1 = document.querySelector('h1#filmName');
+  nameH1 = document.querySelector('h1#name');
   releaseDateSpan = document.querySelector('span#releaseDate');
   directorSpan = document.querySelector('span#director');
   episodeSpan = document.querySelector('span#episode');
@@ -38,15 +38,15 @@ async function fetchFilm(id) {
     .then(res => res.json())
 }
 
-async function fetchCharacters(id) {
-  const url = `${baseUrl}/films/${id}/characters`;
+async function fetchCharacters(film) {
+  const url = `${baseUrl}/films/${film.id}/characters`;
   const characters = await fetch(url)
     .then(res => res.json())
   return characters;
 }
 
-async function fetchPlanets(id) {
-  const url = `${baseUrl}/films/${id}/planets`;
+async function fetchPlanets(film) {
+  const url = `${baseUrl}/films/${film.id}/planets`;
   const planets = await fetch(url)
     .then(res => res.json())
   return planets;
