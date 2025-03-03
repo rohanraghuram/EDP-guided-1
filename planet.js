@@ -24,7 +24,7 @@ addEventListener('DOMContentLoaded', () => {
   orbital_period = document.querySelector('span#orbital_period');
   population = document.querySelector('span#population');
 
-  characterSpan = document.querySelector('span#character');
+  characterUL = document.querySelector('#planets>ul');
   filmsUl = document.querySelector('#films>ul');
   const sp = new URLSearchParams(window.location.search)
   const id = sp.get('id')
@@ -51,7 +51,7 @@ async function fetchPlanet(id) {
 }
 
 async function fetchCharacter(planet) {
-  const url = `${baseUrl}/characters/${planet?.id}`;
+  const url = `${baseUrl}/planets/${planet?.id}/characters`;
   const character = await fetch(url)
     .then(res => res.json())
   return character;
@@ -77,7 +77,11 @@ const renderPlanet = planet => {
   gravity.textContent = planet?.gravity;
   orbital_period.textContent = planet?.orbital_period;
 
-  characterSpan.innerHTML = `<a href="/character.html?id=${planet?.character.id}">${planet?.character.name}</a>`;
+  //characterSpan.innerHTML = `<a href="/character.html?id=${planet?.character.id}">${planet?.character.name}</a>`;
+
+  const characterLis = planet?.character?.map(character => `<li><a href="/character.html?id=${character.id}">${character.name}</li>`)
+  characterUL.innerHTML = characterLis.join("");
+
   const filmsLis = planet?.films?.map(film => `<li><a href="/film.html?id=${film.id}">${film.title}</li>`)
   filmsUl.innerHTML = filmsLis.join("");
 }
