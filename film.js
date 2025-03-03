@@ -9,7 +9,7 @@ const baseUrl = `http://localhost:9001/api`;
 // Runs on page load
 addEventListener('DOMContentLoaded', () => {
   nameH1 = document.querySelector('h1#filmName');
-  releaseDateSpan = document.querySelector('span#releaseDirector');
+  releaseDateSpan = document.querySelector('span#releaseDate');
   directorSpan = document.querySelector('span#director');
   episodeSpan = document.querySelector('span#episode');
   charactersUl = document.querySelector('#characters>ul');
